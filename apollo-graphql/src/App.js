@@ -5,6 +5,10 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import Display from './Display';
 
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import Post from './Posts/Post';
+import Posts from './Posts/Posts';
+
 //  Connect our site to the GraphQL API
 const client = new ApolloClient({
   uri: 'https://api-us-west-2.graphcms.com/v2/ckhdk0tmls7ie01xte6jhcaa0/master',
@@ -32,23 +36,29 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <Display />
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>
+              Edit <code>src/App.js</code> and save to reload.
+            </p>
+            <a
+              className="App-link"
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn React
+            </a>
+          </header>
+          <Switch>
+            <Route exact path="/" component={Posts} />
+            <Route path="/post/:id" component={Post} />
+          </Switch>
+          {/* <Display /> */}
+        </div>
+      </Router>
     </ApolloProvider>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { gql, useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 const POSTS_QUERY = gql`
   query allPosts {
@@ -12,17 +13,19 @@ const POSTS_QUERY = gql`
   }
 `;
 
-function Display() {
+export default function Posts() {
   const { loading, error, data } = useQuery(POSTS_QUERY);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error </p>;
   return (
     <div>
-      {data.posts.map((posts, index) => (
-        <h1 key={index}>{posts.title}</h1>
-      ))}
+      <ul>
+        {data.posts.map((posts) => (
+          <li key={posts.id}>
+            <Link to={`/post/${posts.id}`}>{posts.title}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
-
-export default Display;
