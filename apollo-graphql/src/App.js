@@ -1,30 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+// import { ApolloProvider } from '@apollo/react-hooks';
 
+import Display from './Display';
+
+//  Connect our site to the GraphQL API
 const client = new ApolloClient({
   uri: 'https://api-us-west-2.graphcms.com/v2/ckhdk0tmls7ie01xte6jhcaa0/master',
   cache: new InMemoryCache(),
 });
 
-const testQuery = gql`
-  {
-    posts {
-      id
-      title
-      body
-      createdAt
-    }
-  }
-`;
+// Writing out query
+// const POSTS_QUERY = gql`
+//   {
+//     posts {
+//       id
+//       title
+//       body
+//     }
+//   }
+// `;
 
 // to take data out
-client
-  .query({
-    query: testQuery,
-  })
-  .then((res) => console.log(res));
+// client
+//   .query({
+//     query: POSTS_QUERY,
+//   })
+//   .then((res) => console.log(res));
 
 function App() {
   return (
@@ -44,6 +47,7 @@ function App() {
             Learn React
           </a>
         </header>
+        <Display />
       </div>
     </ApolloProvider>
   );
