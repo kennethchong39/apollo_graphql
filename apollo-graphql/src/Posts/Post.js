@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
+import UpdatePost from './UpdatePost';
 
 export default function Post(props) {
   const { match } = props;
@@ -13,7 +14,13 @@ export default function Post(props) {
 
   return (
     <div>
-      <h1>{data.post.title}</h1>
+      <section>
+        <h1>{data.post.title}</h1>
+      </section>
+      <section>
+        <h1>Edit Post</h1>
+        <UpdatePost post={data.post} />
+      </section>
     </div>
   );
 }

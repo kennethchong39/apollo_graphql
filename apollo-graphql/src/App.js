@@ -58,7 +58,7 @@ function App() {
           </header>
 
           <Link to={'/post/new'}>New Post</Link>
-          <NewPost />
+          {/* <NewPost /> */}
 
           <Switch>
             <Route exact path="/" component={Posts} />

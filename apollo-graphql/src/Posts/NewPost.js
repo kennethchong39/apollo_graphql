@@ -6,39 +6,39 @@ import { gql, useMutation } from '@apollo/client';
 export default function NewPost() {
   //   const [title, setTitle] = useState('');
   //   const [body, setBody] = useState('');
-  const [formData, setFormData] = useState({
-    title: '',
-    body: '',
-  });
+  //   const [formData, setFormData] = useState({
+  //     title: '',
+  //     body: '',
+  //   });
 
-  const handleInput = (e) => {
-    const { name, value } = e.target;
+  //   const handleInput = (e) => {
+  //     const { name, value } = e.target;
 
-    setFormData((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
+  //     setFormData((prev) => {
+  //       return {
+  //         ...prev,
+  //         [name]: value,
+  //       };
+  //     });
+  //   };
+  const [createPost] = useMutation(NEW_POST);
+
+  const handleSubmit = (input) => {
+    //   e.preventDefault();
+    createPost({
+      variables: { title: input.title, body: input.body },
     });
+    //   setFormData({
+    //     title: '',
+    //     body: '',
+    //   });
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addPost({
-      variables: { title: formData.title, body: formData.body },
-    });
-    setFormData({
-      title: '',
-      body: '',
-    });
-  };
-
-  const [addPost, { data }] = useMutation(NEW_POST);
 
   return (
     <div>
       <h1>New Post</h1>
-      <form onSubmit={handleSubmit}>
+      <PostForm onSubmit={handleSubmit} />
+      {/* <form onSubmit={handleSubmit}>
         <input
           name="title"
           type="text"
@@ -54,14 +54,13 @@ export default function NewPost() {
           placeholder="body"
         />
         <button>Submit</button>
-      </form>
-      {/* <PostForm /> */}
+      </form> */}
     </div>
   );
 }
 
 const NEW_POST = gql`
-  mutation addPost($title: String!, $body: String!) {
+  mutation createPost($title: String!, $body: String!) {
     createPost(data: { title: $title, body: $body }) {
       title
       body
