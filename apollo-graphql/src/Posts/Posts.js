@@ -3,6 +3,8 @@ import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 
+// import POSTS_QUERY from './Posts.graphql';
+
 const POSTS_QUERY = gql`
   query allPosts {
     posts(stage: DRAFT) {

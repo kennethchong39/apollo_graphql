@@ -3,17 +3,24 @@ import './App.css';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 // import { ApolloProvider } from '@apollo/react-hooks';
 
-import Display from './Display';
+// import Display from './Display';
 
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Post from './Posts/Post';
 import Posts from './Posts/Posts';
 import NewPost from './Posts/NewPost';
 
+const defaultState = {
+  isEditMode: false,
+};
+
 //  Connect our site to the GraphQL API
 const client = new ApolloClient({
   uri: 'https://api-us-west-2.graphcms.com/v2/ckhdk0tmls7ie01xte6jhcaa0/master',
   cache: new InMemoryCache(),
+  clientState: {
+    defaults: defaultState,
+  },
 });
 
 // Writing out query
