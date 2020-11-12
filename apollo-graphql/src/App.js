@@ -8,6 +8,7 @@ import Display from './Display';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Post from './Posts/Post';
 import Posts from './Posts/Posts';
+import NewPost from './Posts/NewPost';
 
 //  Connect our site to the GraphQL API
 const client = new ApolloClient({
@@ -39,10 +40,10 @@ function App() {
       <Router>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+            {/* <img src={logo} className="App-logo" alt="logo" />
             <p>
               Edit <code>src/App.js</code> and save to reload.
-            </p>
+            </p> */}
             <a
               className="App-link"
               href="https://reactjs.org"
@@ -51,9 +52,17 @@ function App() {
             >
               Learn React
             </a>
+            <Link to={'/'}>
+              <h1>GraphQL</h1>
+            </Link>
           </header>
+
+          <Link to={'/post/new'}>New Post</Link>
+          <NewPost />
+
           <Switch>
             <Route exact path="/" component={Posts} />
+            <Route exact path="/post/new" component={NewPost} />
             <Route path="/post/:id" component={Post} />
           </Switch>
           {/* <Display /> */}

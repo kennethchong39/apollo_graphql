@@ -5,11 +5,16 @@ import { Link } from 'react-router-dom';
 
 const POSTS_QUERY = gql`
   query allPosts {
-    posts {
+    posts(stage: DRAFT) {
       id
       title
       body
     }
+    # stagedPosts: posts(stage: DRAFT) {
+    #   id
+    #   title
+    #   body
+    # }
   }
 `;
 
