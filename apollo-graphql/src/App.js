@@ -57,14 +57,16 @@ function App() {
             </Link>
           </header>
 
-          <Link to={'/post/new'}>New Post</Link>
-          {/* <NewPost /> */}
+          <main>
+            {/* <Link to={'/post/new'}>New Post</Link> */}
+            {/* <NewPost /> */}
 
-          <Switch>
-            <Route exact path="/" component={Posts} />
-            <Route exact path="/post/new" component={NewPost} />
-            <Route path="/post/:id" component={Post} />
-          </Switch>
+            <Switch>
+              <Route exact path="/" component={Posts} />
+              <Route exact path="/post/new" component={NewPost} />
+              <Route path="/post/:id" component={Post} />
+            </Switch>
+          </main>
           {/* <Display /> */}
         </div>
       </Router>

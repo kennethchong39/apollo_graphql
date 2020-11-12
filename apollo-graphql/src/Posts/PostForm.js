@@ -58,7 +58,7 @@ export default function PostForm(props) {
         value={formData.body}
         placeholder="body"
       />
-      <button>Submit</button>
+      <button className="button">Submit</button>
     </form>
   );
 }

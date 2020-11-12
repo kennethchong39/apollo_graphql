@@ -24,7 +24,10 @@ export default function Posts() {
   if (error) return <p>Error </p>;
   return (
     <div>
-      <ul>
+      <Link className="button" to={'/post/new'}>
+        New Post
+      </Link>
+      <ul className="posts-listing">
         {data.posts.map((posts) => (
           <li key={posts.id}>
             <Link to={`/post/${posts.id}`}>{posts.title}</Link>
